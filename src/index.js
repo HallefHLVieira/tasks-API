@@ -99,7 +99,7 @@ app.put('/todos/:id', checksExistsUserAndTodo, (request, response) => {
   user.todos[todo_index].title = title;
   user.todos[todo_index].deadline = new Date(deadline);
 
-  return response.status(201).send();
+  return response.status(201).json(user.todos[todo_index]);
 });
 
 app.patch('/todos/:id/done', checksExistsUserAndTodo, (request, response) => {
@@ -110,7 +110,7 @@ app.patch('/todos/:id/done', checksExistsUserAndTodo, (request, response) => {
     index_todo => index_todo.id === todo.id);
 
   user.todos[todo_index].done = true;
-  return response.status(201).send();
+  return response.status(201).json(user.todos[todo_index]);
 });
 
 app.delete('/todos/:id', checksExistsUserAndTodo, (request, response) => {
